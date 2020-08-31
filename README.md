@@ -9,8 +9,8 @@
 | password          |  string  | null: false |
 | family_name       |  string  | null: false |
 | first_name        |  string  | null: false |
-| family_name(kana) |  string  | null: false |
-| first_name(kana)  |  string  | null: false |
+| family_name_kana  |  string  | null: false |
+| first_name_kana   |  string  | null: false |
 | birthday          |  date    | null: false |
 
 
@@ -23,20 +23,20 @@
 
 |     Column          |   Type      | Options                        |
 |  -----------------  |  ---------  | ------------------------------ |
-| item_name           |  string     | null: false                    |
-| item_explanation    |  integer    | null: false                    |
+| name                |  string     | null: false                    |
+| explanation         |  text       | null: false                    |
 | category            |  integer    | null: false                    |
 | item_status         |  integer    | null: false                    |
 | shipping_charges    |  integer    | null: false                    |
 | shipping_region     |  integer    | null: false                    |
 | days_until_shipping |  integer    | null: false                    |
-| selling_price       |  string     | null: false                    |
+| selling_price       |  integer    | null: false                    |
 | user                | references  | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to :user
-- has_one :purchases
+- has_one :purchase
 
 ## purchases テーブル
 
