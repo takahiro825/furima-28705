@@ -26,7 +26,7 @@
 | name                |  string     | null: false                    |
 | explanation         |  text       | null: false                    |
 | category            |  integer    | null: false                    |
-| item_status         |  integer    | null: false                    |
+| status              |  integer    | null: false                    |
 | shipping_charges    |  integer    | null: false                    |
 | shipping_region     |  integer    | null: false                    |
 | days_until_shipping |  integer    | null: false                    |
@@ -55,6 +55,7 @@
 |     Column        |   Type      | Options                        |
 |  --------------   |  ---------  | ------------------------------ |
 | postal_code       |  string     | null: false                    |
+| prefectures       |  string     | null: false                    |
 | city              |  string     | null: false                    |
 | address           |  string     | null: false                    |
 | building_name     |  string     |                                |
