@@ -1,24 +1,61 @@
-# README
+# テーブル設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## users テーブル
 
-Things you may want to cover:
+|  Column    |   Type   | Options     |
+|  -------   |  ------  | ----------- |
+| nickname   |  string  | null: false |
+| email      |  string  | null: false |
+| password   |  string  | null: false |
+| name       |  string  | null: false |
+| name(kana) |  string  | null: false |
 
-* Ruby version
 
-* System dependencies
+### Association
 
-* Configuration
+- has_many :items
+- has_many :purchases
 
-* Database creation
+## items テーブル
 
-* Database initialization
+|     Column       |   Type      | Options                        |
+|  --------------  |  ---------  | ------------------------------ |
+| item_name        |  string     | null: false                    |
+| item_explanation |  text       | null: false                    |
+| selling_price    |  string     | null: false                    |
+| user_id          | references  | null: false, foreign_key: true |
 
-* How to run the test suite
+### Association
 
-* Services (job queues, cache servers, search engines, etc.)
+- belongs_to :users
+- has_one :purchases
 
-* Deployment instructions
+## purchases テーブル
 
-* ...
+|     Column        |   Type      | Options                        |
+|  --------------   |  ---------  | ------------------------------ |
+| card_information  | string      | null: false                    |
+| expiration_date   | string      | null: false                    |
+| security_cade     | string      | null: false                    |
+| user_id           | references  | null: false, foreign_key: true |
+| item_id           | references  | null: false, foreign_key: true |
+### Association
+
+- belongs_to :items
+- belongs_to :users
+- has_one :shipping_address
+
+## shipping_address テーブル
+
+|     Column        |   Type      | Options                        |
+|  --------------   |  ---------  | ------------------------------ |
+| postal_code       |  string     | null: false                    |
+| city              |  string     | null: false                    |
+| address           |  string     | null: false                    |
+| building_name     |  string     |                                |
+| phone_number      |  string     | null: false                    |
+| purchase_id       | references  | null: false, foreign_key: true |
+
+### Association
+
+- belongs_to :purchases
