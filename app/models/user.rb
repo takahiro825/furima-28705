@@ -13,13 +13,13 @@ class User < ApplicationRecord
   validates :password, format: {with:/\A[a-z0-9]+\z/i}
   #パスワードは半角英数字混同
   
-  with_options presence: true, format: { with: /\A[ぁ-んァ-ン一-龥]+\z/, } do
+  with_options presence: true, format: { with: /\A[ぁ-んァ-ン一-龥]+\z/ } do
     validates :family_name
     validates :first_name
   end
    #ユーザー本名が全角の（漢字・かな・カナ）で入力
 
-  with_options presence: true, format: { with: /\A[ァ-ン一]+\z/, } do
+  with_options presence: true, format: { with: /\A[ァ-ン一]+\z/ } do
     validates :family_name_kana
     validates :first_name_kana
   end
