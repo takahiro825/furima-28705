@@ -9,6 +9,10 @@ describe User do
       it "nicknameとemail、passwordとpassword_confirmation、family_name、first _name、family_name_kana、first _name_kana、birthdayが存在すれば登録できる" do
         expect(@user).to be_valid
       end
+      it "emailには@が存在すれば登録できる" do
+        @user.email = "ffgdsm64@khj.com"
+        expect(@user).to be_valid
+      end
       it "passwordが6文字以上でであれば登録できる" do
         @user.password = "000000"
         @user.password_confirmation = "000000"
@@ -53,6 +57,11 @@ describe User do
         another_user.email = @user.email
         another_user.valid?
         expect(another_user.errors.full_messages).to include("Email has already been taken")
+      end
+      it "emailには@が存在しないと場合登録できない" do
+        @user.email = "fgfdug42354ff"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Email is invalid")
       end
       it "passwordが空では登録できない" do
         @user.password = ""
