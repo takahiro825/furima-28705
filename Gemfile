@@ -34,6 +34,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 4.0.0'
   gem 'factory_bot_rails'
   gem 'faker'
+  gem 'minitest', '>= 5.14.0', '< 5.14.2'
 end
 
 group :development do
@@ -62,3 +63,7 @@ group :production do
 end
 gem 'devise'
 gem 'pry-rails'
+gem 'active_hash'
+gem 'mini_magick'
+gem 'image_processing', '~> 1.2'
+gem 'public_suffix', '>= 4.0.0', '< 4.0.6'
