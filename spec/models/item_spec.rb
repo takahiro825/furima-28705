@@ -97,11 +97,30 @@ describe '商品出品' do
       @item.valid?
       expect(@item.errors.full_messages).to include("Selling price is not a number")
     end 
-    it "user_idがあってもnameがないと登録できない" do
-      @item.user_id = "1"
-      @item.name = ""
+    it "category_idがid_1,name:'--'を選択した場合だと登録できない" do
+      @item.category_id = 1
       @item.valid?
-      expect(@item.errors.full_messages).to include( "Name can't be blank")
+      expect(@item.errors.full_messages).to include("Category must be other than 1")
+    end
+    it "status_idがid_1,name:'--'を選択した場合だと登録できない" do
+      @item.status_id = 1
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Status must be other than 1")
+    end
+    it "shipping_charges_idがid_1,name:'--'を選択した場合だと登録できない" do
+      @item.shipping_charges_id = 1
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Shipping charges must be other than 1")
+    end
+    it "shipping_region_idがid_1,name:'--'を選択した場合だと登録できない" do
+      @item.shipping_region_id = 1
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Shipping region must be other than 1")
+    end
+    it "days_until_shipping_idがid_1,name:'--'を選択した場合だと登録できない" do
+      @item.days_until_shipping_id = 1
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Days until shipping must be other than 1")
     end
   end
  end
