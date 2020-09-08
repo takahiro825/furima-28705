@@ -9,15 +9,15 @@ describe Item do
 
 describe '商品出品' do
   context '商品出品がうまくいくとき' do
-    it "image、name、explanation、category_id、status_id、shipping_charges、shipping_region_id、days_until_shipping、selling_price,user_idが存在すれば登録できる" do
+    it "image、name、explanation、category_id、status_id、shipping_charges_id、shipping_region_id、days_until_shipping_id、selling_price,user_idが存在すれば登録できる" do
       expect(@item).to be_valid
     end
     it "selling_priceが300円以上であれば登録できる" do
-      @item. selling_price= "430"
+      @item. selling_price = "430"
       expect(@item).to be_valid
     end
     it "selling_priceが999,999,999円以下であれば登録できる" do
-      @item. selling_price= "26800"
+      @item. selling_price = "26800"
       expect(@item).to be_valid
     end
     it "selling_priceが半角数字であれば登録できる" do
@@ -28,70 +28,70 @@ describe '商品出品' do
  
   context '商品出品がうまくいかないとき' do
     it "imageがないと登録できない" do
-      @user.image = ""
-      @user.valid?
-      binding.pry
-      expect(@user.errors.full_messages).to include()
+      @item.image = nil
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Image can't be blank")
     end
     it "nameがないと登録できない" do
       @item.name = ""
       @item.valid?
-      expect(@item.errors.full_messages).to include()
+      expect(@item.errors.full_messages).to include("Name can't be blank")
    end
    it "explanationがないと登録できない" do
     @item.explanation = ""
     @item.valid?
-    expect(@item.errors.full_messages).to include()
+    expect(@item.errors.full_messages).to include("Explanation can't be blank")
     end
     it "category_idがないと登録できない" do
       @item.category_id = ""
       @item.valid?
-      expect(@item.errors.full_messages).to include()
+      expect(@item.errors.full_messages).to include("Category can't be blank")
     end
     it "status_idがないと登録できない" do
       @item.status_id = ""
       @item.valid?
-      expect(@item.errors.full_messages).to include()
+      expect(@item.errors.full_messages).to include("Status can't be blank")
     end
     it "shipping_chargesがないと登録できない" do
-      @item.shipping_charges = ""
+      @item.shipping_charges_id = ""
       @item.valid?
-      expect(@item.errors.full_messages).to include()
+      expect(@item.errors.full_messages).to include("Shipping charges can't be blank")
     end
     it "shipping_region_idがないと登録できない" do
       @item.shipping_region_id = ""
       @item.valid?
-      expect(@item.errors.full_messages).to include()
+      expect(@item.errors.full_messages).to include("Shipping region can't be blank")
     end
-    it "days_until_shippingがないと登録できない" do
-      @item.days_until_shipping = ""
+    it "days_until_shipping_idがないと登録できない" do
+      @item.days_until_shipping_id = ""
       @item.valid?
-      expect(@item.errors.full_messages).to include()
+      expect(@item.errors.full_messages).to include("Days until shipping can't be blank")
     end
     it "selling_priceがないと登録できない" do
       @item.selling_price = ""
       @item.valid?
-      expect(@item.errors.full_messages).to include()
+      expect(@item.errors.full_messages).to include("Selling price can't be blank")
     end 
     it "user_idがないと登録できない" do
       @item.user_id = ""
       @item.valid?
-      expect(@item.errors.full_messages).to include()
+      expect(@item.errors.full_messages).to include("User must exist")
     end 
     it "selling_priceの入力が全角だと登録できない" do
       @item.selling_price = "１２００"
       @item.valid?
-      expect(@item.errors.full_messages).to include()
+      expect(@item.errors.full_messages).to include("Selling price is not a number")
     end 
     it "selling_priceが299円以下だと登録できない" do
       @item.selling_price = "200"
       @item.valid?
-      expect(@item.errors.full_messages).to include()
+      expect(@item.errors.full_messages).to include("Selling price must be greater than 299")
     end
     it "selling_priceが999,999,999円以上だと登録できない" do
       @item.selling_price = "1000000000"
       @item.valid?
-      expect(@item.errors.full_messages).to include()
+      #binding.pry
+      expect(@item.errors.full_messages).to include("Selling price must be less than 9999999")
     end
   end
  end
