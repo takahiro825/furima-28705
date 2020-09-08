@@ -90,8 +90,18 @@ describe '商品出品' do
     it "selling_priceが999,999,999円以上だと登録できない" do
       @item.selling_price = "1000000000"
       @item.valid?
-      #binding.pry
       expect(@item.errors.full_messages).to include("Selling price must be less than 9999999")
+    end
+    it "selling_priceの入力が数字以外だと登録できない" do
+      @item.selling_price = "あいうaio"
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Selling price is not a number")
+    end 
+    it "user_idがあってもnameがないと登録できない" do
+      @item.user_id = "1"
+      @item.name = ""
+      @item.valid?
+      expect(@item.errors.full_messages).to include( "Name can't be blank")
     end
   end
  end
