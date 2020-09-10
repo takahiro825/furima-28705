@@ -17,19 +17,13 @@ class ItemsController < ApplicationController
     end
   end
 
-    def show
-    end
-  
-    def edit
-    end
-
-    def update
+  def update
       if @item.user_id == current_user.id && @item.update(item_params)
            redirect_to item_path(@item.id)
       else
           render :edit
       end
-    end
+  end
 
   private
   def item_params
