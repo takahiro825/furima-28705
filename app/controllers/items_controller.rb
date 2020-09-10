@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :set_item, only: [:show,:edit, :update]
+  before_action :set_item, only: [:show,:edit, :update, :destroy]
   def index
     @items = Item.includes(:user).order("created_at DESC")
   end
@@ -26,8 +26,7 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    item = Item.find(params[:id])
-    if item.destroy
+    if @item.destroy
        redirect_to root_path
     else
       render :edit
