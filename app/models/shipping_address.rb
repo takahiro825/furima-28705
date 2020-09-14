@@ -1,13 +1,8 @@
 class ShippingAddress < ApplicationRecord
-  belongs_to :purchases
+  belongs_to :purchase
   
-  with_options presence: true do
-    validates :postal_code
-    validates :prefectures_id
-    validates :city
-    validates :address 
-    validates :phone_number
-    validates :purchase
-  end
+  extend ActiveHash::Associations::ActiveRecordExtensions
+  belongs_to_active_hash :shipping_region
 
+  
 end
